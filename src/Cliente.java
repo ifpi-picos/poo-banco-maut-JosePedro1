@@ -30,4 +30,14 @@ public List<Conta> getContas() {
 public void abrirConta(Conta conta) {
   contas.add(conta);
 }
+public ContaCorrente abrirContaCorrente(String agencia, String numeroConta, double saldo, double limiteChequeEspecial) {
+  ContaCorrente conta = new ContaCorrente(agencia, numeroConta, saldo, this, limiteChequeEspecial);
+  contas.add(conta);
+  return conta;
+}
+public ContaPoupanca abrirContaPoupanca(String agencia, String numeroConta, double saldo, double rendimento) {
+  ContaPoupanca conta = new ContaPoupanca(agencia, numeroConta, saldo, this, rendimento);
+  contas.add(conta);
+  return conta;
+}
 }

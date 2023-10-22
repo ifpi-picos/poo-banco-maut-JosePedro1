@@ -4,7 +4,7 @@ import java.util.List;
 public class Conta {
      private  String agencia;
     private  String numeroConta;
-    private double saldo;
+    protected double saldo;
     private  Cliente cliente;
     private List<String> extrato;
 
@@ -22,12 +22,16 @@ public double getSaldo() {
     public void depositar(double valor) {
         saldo += valor;
         extrato.add("Depósito:" + valor);
+        Notificacao notificacao = new Notificacao();
+    notificacao.enviarNotificacao(cliente, "Você realizou um depósito de " + valor);
     }
 
     public void sacar(double valor) {
         if (saldo >= valor) {
             saldo -= valor;
             extrato.add("Saque: " + valor);
+            Notificacao notificacao = new Notificacao();
+        notificacao.enviarNotificacao(cliente, "Você realizou um saque de " + valor);
         } else {
             System.out.println("Saldo insuficiente");
         }
